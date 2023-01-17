@@ -6,6 +6,7 @@ export default function Users() {
 	return (
 		<div className={styles.main}>
 			<UserCard />
+
 		</div>
 	);
 }
