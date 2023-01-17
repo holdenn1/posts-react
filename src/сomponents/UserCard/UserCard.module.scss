@@ -1,0 +1,35 @@
+.container {
+	width: 220px;
+	height: 360px;
+	border: 1px solid black;
+	overflow: hidden;
+	margin-bottom: 40px;
+	.avatar{
+		width: 220px;
+		height: 220px;
+		width: 100%;
+		object-fit: cover;
+	}
+	.info{
+		display: flex;
+		align-items: center;
+		flex-direction: column;
+		height: 140px;
+		.name{
+			font-family: "Raleway", sans-serif;
+			font-weight: 700;
+			margin: 12px 0;
+		}
+		.age{
+			flex: 1 1 auto;
+			font-family: "Raleway", sans-serif;
+			font-weight: 600;
+		}
+		.site{
+			margin: 14px 0;
+			font-family: "Raleway", sans-serif;
+			font-weight: 400;
+			font-size: 14px;
+		}
+	}
+}

@@ -1,3 +1,11 @@
 .main{
-	flex: 1 1 auto
+	flex: 1 1 auto;
+	margin: 120px auto 0;
+	max-width:  1170px;
+	width: 100%;
+	padding: 0 15px;
+	box-sizing: border-box;
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
 }
