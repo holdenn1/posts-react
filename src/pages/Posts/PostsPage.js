@@ -1,13 +1,13 @@
 import React from 'react';
 import Footer from '../../сomponents/Footer/Footer';
 import Header from '../../сomponents/Header/Header';
-import Users from '../../сomponents/Main/Users';
+import Posts from '../../сomponents/Main/Posts';
 
-export default function UsersPage() {
+export default function PostsPage() {
 	return (
 		<>
-			<Header title='Users'/>
-			<Users />
+			<Header title="Posts" />
+			<Posts />
 			<Footer />
 		</>
 	);

@@ -5,13 +5,12 @@
 	position: fixed;
 	top: 0;
 	left: 0;
+	z-index: 100;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	.title {
-		font-family: "Raleway", sans-serif;
 		font-size: 32px;
-		text-transform: capitalize;
 		font-weight: 500;
 		color: aliceblue;
 	}
