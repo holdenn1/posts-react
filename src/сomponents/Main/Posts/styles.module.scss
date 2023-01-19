@@ -14,7 +14,9 @@
 		margin-bottom: 60px;
 		.userPhoto {
 			max-width: 260px;
+			max-height: 260px;
 			width: 100%;
+			object-fit: cover;
 			margin-right: 26px;
 		}
 		.userInfo {

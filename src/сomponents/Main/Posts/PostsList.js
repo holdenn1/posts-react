@@ -8,7 +8,7 @@ export default function PostsList({ posts }) {
 			<div className={styles.postsContainer}>
 				{posts.map((item) => {
 					return (
-						<Link key={item.id} className={styles.postLink}>
+						<Link to={`/posts/comments/${item.id}`} key={item.id} className={styles.postLink}>
 							<div className={styles.postItem}>
 								<img src={item.photo} alt="" className={styles.postImg}></img>
 								<h3 className={styles.postTitle}>{item.title}</h3>

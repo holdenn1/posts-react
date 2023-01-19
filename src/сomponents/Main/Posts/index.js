@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styles from './styles.module.scss';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import CurrentUser from './CurrentUser';
 import PostsList from './PostsList';
 import Spinner from '../../Spinner/Spinner';
@@ -32,6 +32,7 @@ export default function Posts() {
 		setPosts(data);
 		setIsLoading(false);
 	}
+	console.log(posts);
 
 	return (
 		<>

@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './UserCard.module.scss';
 import { Link } from 'react-router-dom';
 
-export default function User({ users }) {
+export default function  	User({ users }) {
 	return (
 		<>
 			{users.map((item) => {
