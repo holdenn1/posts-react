@@ -6,7 +6,7 @@ import Users from '../../сomponents/Main/Users';
 export default function UsersPage() {
 	return (
 		<>
-			<Header title='Users'/>
+			<Header title='Users' filter='filter'/>
 			<Users />
 			<Footer />
 		</>
