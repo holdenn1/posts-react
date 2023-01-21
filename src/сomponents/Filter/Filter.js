@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './Filter.module.scss';
 import filterIcon from './../../img/icons/icons8-funnel-50.png';
-export default function Filter() {
-	const [visible, setVisible] = useState(false);
+
+export default function Filter({props}) {
 	const modalStyles = [styles.filter];
-	if (visible) {
+
+	if (props.visible) {
 		modalStyles.push(styles.filterActive);
 	}
 
@@ -12,7 +13,7 @@ export default function Filter() {
 		<>
 			<div
 				className={modalStyles.join(' ')}
-				onClick={() => setVisible(!visible)}
+				onClick={() =>props.setVisible(!props.visible)}
 			>
 				<div
 					className={styles.filtercontant}
@@ -20,11 +21,17 @@ export default function Filter() {
 				>
 					<h3 className={styles.filterTitle}>Filter</h3>
 					<input
+						value={props.inputAge}
+						onChange={(e) => props.setInputAge(+e.target.value)}
 						className={styles.filterInput}
 						type="text"
 						placeholder="Input age"
 					/>
-					<button className={styles.searchBtn} type="button">
+					<button
+						onClick={props.searchUsers}
+						className={styles.searchBtn}
+						type="button"
+					>
 						Search
 					</button>
 				</div>
@@ -33,7 +40,7 @@ export default function Filter() {
 				className={styles.filterBtn}
 				src={filterIcon}
 				alt="#"
-				onClick={() => setVisible(!visible)}
+				onClick={() => props.setVisible(!props.visible)}
 			/>
 		</>
 	);
