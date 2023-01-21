@@ -1,66 +1,93 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { Component, createRef } from 'react';
+import {  useParams } from 'react-router-dom';
 import styles from './styles.module.scss';
-import { useParams } from 'react-router-dom';
 import CurrentUser from './CurrentUser';
 import PostsList from './PostsList';
 import Spinner from '../../Spinner/Spinner';
 
-export default function Posts() {
-	const { id } = useParams();
-	const [isLoading, setIsLoading] = useState(false);
-	const [user, setUser] = useState([]);
-	const [posts, setPosts] = useState([]);
-	const limit = useRef(4);
-	let page = useRef(1);
 
-	const lastElement = useRef();
-	const observer = useRef();
-
-	useEffect(() => {
-		fetch(`http://localhost:3000/users/${id}`)
-			.then((response) => response.json())
-			.then((data) => setUser([data]));
-	}, [id]);
-
-	useEffect(() => {
-		loadPosts();
-	}, []);
-
-	useEffect(() => {
-		if (isLoading) return;
-		if (observer.current) observer.current.disconnect();
-		let loadMorePosts = function ([{ isIntersecting }]) {
-			if (isIntersecting && page.current < 3) {
-				page.current += 1;
-				loadPosts();
-			}
+class PostsComponent extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			user: [],
+			posts: [],
+			isLoading: false,
 		};
-		observer.current = new IntersectionObserver(loadMorePosts);
-		observer.current.observe(lastElement.current);
-		return () => {
-			observer.current.disconnect();
-		};
-	}, [isLoading]);
-
-	async function loadPosts() {
-		setIsLoading(true);
-		const response = await fetch(
-			`http://localhost:3000/posts?userId=${id}&_limit=${limit.current}&_page=${page.current}`
-		);
-		const data = await response.json();
-		console.log(data);
-		setPosts([...posts, ...data]);
-		setIsLoading(false);
+		this.lastElement = createRef();
+		this.limit = 4;
+		this.observer = new IntersectionObserver(this.loadMorePosts);
 	}
 
-	return (
-		<>
-			<div className={styles.main}>
-				<CurrentUser user={user} />
-				<PostsList posts={posts} />
-				{isLoading && <Spinner />}
-			</div>
-			<div ref={lastElement} style={{ height: '20px', width: '100%' }}></div>
-		</>
-	);
+	loadUser = async () => {
+		const response = await fetch(
+			`http://localhost:3000/users/${this.props.id}`
+		);
+		const data = await response.json();
+		this.setState({
+			user: [data],
+		});
+	};
+
+	loadPosts = async () => {
+		this.setState({
+			isLoading: true,
+		});
+		const response = await fetch(
+			`http://localhost:3000/posts?userId=${this.props.id}&_start=${this.state.posts.length}&_limit=${this.limit}`
+		);
+		const data = await response.json();
+		this.setState({
+			isLoading: false,
+			posts: [...this.state.posts, ...data],
+		});
+		if (data.length < this.limit) {
+			this.observer.disconnect();
+		}
+	};
+
+	async componentDidMount() {
+		this.setState({
+			isLoading: true,
+		});
+		await this.loadUser();
+		await this.loadPosts();
+		this.observer.observe(this.lastElement.current);
+		this.setState({
+			isLoading: false,
+		});
+	}
+
+	componentWillUnmount() {
+		this.observer.disconnect();
+	}
+
+	loadMorePosts = ([{ isIntersecting }]) => {
+		if (isIntersecting && !this.state.isLoading) {
+			this.loadPosts();
+		}
+	};
+
+	render() {
+		return (
+			<>
+				<div className={styles.main}>
+					<CurrentUser user={this.state.user} />
+					<PostsList posts={this.state.posts} />
+					{this.state.isLoading && <Spinner />}
+				</div>
+				<div
+					ref={this.lastElement}
+					style={{ height: '20px', width: '100%' }}
+				></div>
+			</>
+		);
+	}
 }
+
+export default function Posts() {
+	const { id } = useParams();
+	return <PostsComponent id={id} />;
+}
+
+
