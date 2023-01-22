@@ -5,7 +5,6 @@ import CommentList from './CommentLIst';
 import CurrentPost from './CurrentPost';
 import styles from './styles.module.scss';
 
-
 class CommentsComponents extends Component {
 	constructor() {
 		super();
@@ -13,6 +12,7 @@ class CommentsComponents extends Component {
 			post: [],
 			comments: [],
 			isLoading: false,
+			errorMassage: '',
 		};
 		this.lastElement = createRef();
 		this.limit = 4;
@@ -20,30 +20,48 @@ class CommentsComponents extends Component {
 	}
 
 	loadPost = async () => {
-		const response = await fetch(
-			`http://localhost:3000/posts/${this.props.id}`
-		);
-		const data = await response.json();
-		this.setState({
-			post: [data],
-		});
+		try {
+			const response = await fetch(
+				`http://localhost:3000/posts/${this.props.id}`
+			);
+			const data = await response.json();
+			this.setState({
+				post: [data],
+				
+			});
+		} catch (error) {
+			this.setState({
+				errorMassage: 'Post is not a found',
+			})
+			
+		}
 	};
 
 	loadComments = async () => {
-		this.setState({
-			isLoading: true,
-		});
-		const response = await fetch(
-			`http://localhost:3000/comments?postId=${this.props.id}&_start=${this.state.comments.length}&_limit=${this.limit}`
-		);
-		const data = await response.json();
-		this.setState({
-			isLoading: false,
-			comments: [...this.state.comments, ...data],
-		});
-		if (data.length < this.limit) {
-			this.observer.disconnect();
+		try{
+			this.setState({
+				isLoading: true,
+			
+			});
+			const response = await fetch(
+				`http://localhost:3000/comments?postId=${this.props.id}&_start=${this.state.comments.length}&_limit=${this.limit}`
+			);
+			const data = await response.json();
+			this.setState({
+				isLoading: false,
+				comments: [...this.state.comments, ...data],
+			});
+			if (data.length < this.limit) {
+				this.observer.disconnect();
+			}
+		}catch(error){
+			this.setState({
+				isLoading: false,
+				errorMassage: 'Comments is not a found',
+			})
+			console.error(error)
 		}
+	
 	};
 
 	async componentDidMount() {
@@ -65,14 +83,13 @@ class CommentsComponents extends Component {
 	loadMoreComments = ([{ isIntersecting }]) => {
 		if (isIntersecting && !this.state.isLoading) {
 			this.loadComments();
-			console.log(1)
 		}
 	};
 	render() {
 		return (
 			<>
 				<div className={styles.main}>
-					<CurrentPost post={this.state.post} />
+					<CurrentPost post={this.state.post} error={this.state.errorMassage}/>
 					<CommentList comments={this.state.comments} />
 					{this.state.isLoading && <Spinner />}
 				</div>

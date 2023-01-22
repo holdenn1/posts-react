@@ -13,6 +13,7 @@ class PostsComponent extends Component {
 			user: [],
 			posts: [],
 			isLoading: false,
+			errorMassage: ''
 		};
 		this.lastElement = createRef();
 		this.limit = 4;
@@ -20,30 +21,48 @@ class PostsComponent extends Component {
 	}
 
 	loadUser = async () => {
-		const response = await fetch(
-			`http://localhost:3000/users/${this.props.id}`
-		);
-		const data = await response.json();
-		this.setState({
-			user: [data],
-		});
+		try{
+			const response = await fetch(
+				`http://localhost:3000/users/${this.props.id}`
+			);
+			const data = await response.json();
+			this.setState({
+				user: [data],
+			});
+		}catch(error){
+			this.setState({
+				errorMassage: 'User is not a found'
+			})
+			console.error(error)
+		}
+
+		
 	};
 
 	loadPosts = async () => {
-		this.setState({
-			isLoading: true,
-		});
-		const response = await fetch(
-			`http://localhost:3000/posts?userId=${this.props.id}&_start=${this.state.posts.length}&_limit=${this.limit}`
-		);
-		const data = await response.json();
-		this.setState({
-			isLoading: false,
-			posts: [...this.state.posts, ...data],
-		});
-		if (data.length < this.limit) {
-			this.observer.disconnect();
+		try{
+			this.setState({
+				isLoading: true,
+			});
+			const response = await fetch(
+				`http://localhost:3000/posts?userId=${this.props.id}&_start=${this.state.posts.length}&_limit=${this.limit}`
+			);
+			const data = await response.json();
+			this.setState({
+				isLoading: false,
+				posts: [...this.state.posts, ...data],
+			});
+			if (data.length < this.limit) {
+				this.observer.disconnect();
+			}
+		}catch (error){
+			this.setState({
+				isLoading: false,
+				errorMassage: 'Post is not a found',
+			})
+			console.error(error)
 		}
+		
 	};
 
 	async componentDidMount() {
@@ -72,7 +91,7 @@ class PostsComponent extends Component {
 		return (
 			<>
 				<div className={styles.main}>
-					<CurrentUser user={this.state.user} />
+					<CurrentUser user={this.state.user} error={this.state.errorMassage}/>
 					<PostsList posts={this.state.posts} />
 					{this.state.isLoading && <Spinner />}
 				</div>

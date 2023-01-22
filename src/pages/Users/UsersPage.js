@@ -7,20 +7,32 @@ export default function UsersPage() {
 	const [visible, setVisible] = useState(false);
 	const [inputAge, setInputAge] = useState('');
 	const [findUsers, setFindUsers] = useState([]);
+	const [showErrorMassage, setShowErrorMassage] = useState('');
 
 	async function searchUsers() {
-		const resoponse = await fetch(`http://localhost:3000/users`);
-		const data = await resoponse.json();
-		const searchUsersByAge = data.filter((data) => data.age === inputAge);
-		setFindUsers(searchUsersByAge);
-		setInputAge(' ');
-		setVisible(false);
+		try {
+			const resoponse = await fetch(`http://localhost:3000/users`);
+			const data = await resoponse.json();
+			const searchUsersByAge = data.filter((data) => data.age == inputAge);
+			setFindUsers(searchUsersByAge);
+			setInputAge(' ');
+			setShowErrorMassage('');
+			if (searchUsersByAge.length == 0) {
+				const err = new Error();
+				err();
+			}
+			setVisible(false);
+		} catch (error) {
+			setShowErrorMassage('Users is not a found');
+			setVisible(false);
+		}
 	}
+
 	return (
 		<>
 			<Header
 				title="Users"
-				props={{
+				data={{
 					inputAge,
 					setInputAge,
 					findUsers,
@@ -29,7 +41,10 @@ export default function UsersPage() {
 					setVisible,
 				}}
 			/>
-			<Users findUsers={findUsers} />
+			<Users
+				findUsers={findUsers}
+				error={{ showErrorMassage, setShowErrorMassage }}
+			/>
 			<Footer />
 		</>
 	);

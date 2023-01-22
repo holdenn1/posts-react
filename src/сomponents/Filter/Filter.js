@@ -2,10 +2,10 @@ import React from 'react';
 import styles from './Filter.module.scss';
 import filterIcon from './../../img/icons/icons8-funnel-50.png';
 
-export default function Filter({props}) {
+export default function Filter({data}) {
 	const modalStyles = [styles.filter];
 
-	if (props.visible) {
+	if (data.visible) {
 		modalStyles.push(styles.filterActive);
 	}
 
@@ -13,7 +13,7 @@ export default function Filter({props}) {
 		<>
 			<div
 				className={modalStyles.join(' ')}
-				onClick={() =>props.setVisible(!props.visible)}
+				onClick={() =>data.setVisible(!data.visible)}
 			>
 				<div
 					className={styles.filtercontant}
@@ -21,14 +21,14 @@ export default function Filter({props}) {
 				>
 					<h3 className={styles.filterTitle}>Filter</h3>
 					<input
-						value={props.inputAge}
-						onChange={(e) => props.setInputAge(+e.target.value)}
+						value={data.inputAge}
+						onChange={(e) => data.setInputAge(e.target.value)}
 						className={styles.filterInput}
 						type="text"
 						placeholder="Input age"
 					/>
 					<button
-						onClick={props.searchUsers}
+						onClick={data.searchUsers}
 						className={styles.searchBtn}
 						type="button"
 					>
@@ -40,7 +40,7 @@ export default function Filter({props}) {
 				className={styles.filterBtn}
 				src={filterIcon}
 				alt="#"
-				onClick={() => props.setVisible(!props.visible)}
+				onClick={() => data.setVisible(!data.visible)}
 			/>
 		</>
 	);

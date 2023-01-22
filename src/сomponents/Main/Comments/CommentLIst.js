@@ -4,7 +4,6 @@ import styles from './styles.module.scss';
 export default function CommentList({ comments }) {
 	return (
 		<>
-			{' '}
 			{comments.map((comment) => {
 				return (
 					<div key={comment.id} className={styles.commentsContainer}>
