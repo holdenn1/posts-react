@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 import Footer from '../../сomponents/Footer/Footer';
 import Header from '../../сomponents/Header/Header';
 import Users from '../../сomponents/Main/Users';
@@ -16,12 +17,10 @@ export default function UsersPage() {
 			const searchUsersByAge = data.filter((data) => data.age == inputAge);
 			setFindUsers(searchUsersByAge);
 			setInputAge(' ');
-			setShowErrorMassage('');
-			if (searchUsersByAge.length == 0) {
-				const err = new Error();
-				err();
-			}
 			setVisible(false);
+			if (searchUsersByAge.length == 0) {
+				throw new Error();
+			}
 		} catch (error) {
 			setShowErrorMassage('Users is not a found');
 			setVisible(false);

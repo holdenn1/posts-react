@@ -23,7 +23,6 @@ export default class UserCard extends Component {
 				`http://localhost:3000/users?_start=${this.state.users.length}&_limit=${this.limit}`
 			);
 			const data = await response.json();
-			this.props.error.setShowErrorMassage('');
 			this.setState({
 				isLoading: false,
 				users: [...this.state.users, ...data],

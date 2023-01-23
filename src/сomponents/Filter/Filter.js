@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './Filter.module.scss';
-import filterIcon from './../../img/icons/icons8-funnel-50.png';
+import filterIcon from './../../assets/img/icons/icons8-funnel-50.png';
 
 export default function Filter({data}) {
 	const modalStyles = [styles.filter];
