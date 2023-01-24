@@ -15,46 +15,86 @@
 		width: 260px;
 		height: 380px;
 		overflow: hidden;
-		.btnContainer{
+		.btnContainer {
 			width: 100%;
+			height: 60px;
 			display: flex;
 			justify-content: center;
-			.nextBtn{
+			align-items: flex-end;
+			gap: 20px;
+			.nextBtn {
 				height: 40px;
 				max-width: 180px;
 				min-width: 120px;
-				margin: 24px 0;
 				border: none;
 				border-radius: 12px;
 				background: rgb(0, 70, 162);
 				color: aliceblue;
 				font-weight: 500;
 			}
+			.prevBtn {
+				height: 40px;
+				max-width: 180px;
+				min-width: 120px;
+				border: none;
+				border-radius: 12px;
+				background: rgb(0, 153, 195);
+				color: aliceblue;
+				font-weight: 500;
+			}
 		}
-		
+
 		.formContainer {
 			width: 100%;
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
-			.firstStepImg {
+			.formImg {
 				max-width: 140px;
 				margin: 0 auto;
-				margin-bottom: 30px;
+				margin-bottom: 24px;
 			}
 			.titleForm {
 				font-size: 18px;
 				font-weight: 600;
 				text-align: center;
-				margin-bottom: 20px;
+				margin-bottom: 12px;
 			}
 			.inputForm {
 				border: none;
 				border-bottom: 1px solid rgb(149, 149, 149);
-				margin: 0 auto 18px;
+				margin: 0 auto 16px;
 				width: 220px;
 				height: 24px;
 				background: rgb(219, 219, 219);
+			}
+			.genderButtons {
+				display: flex;
+				justify-content: space-around;
+				width: 100%;
+				input[type="radio"] {
+					display: none;
+				}
+				label {
+					display: inline-block;
+					cursor: pointer;
+					padding: 0px 15px;
+					line-height: 34px;
+					border: 1px solid rgb(134, 134, 134);
+					border-radius: 10px;
+					user-select: none;
+				}
+				input[type="radio"]:checked + label {
+					background: rgb(20, 118, 210);
+					color: aliceblue;
+					font-weight: 500;
+				}
+				.genderButtonsItem {
+					label {
+						width: 60px;
+						text-align: center;
+					}
+				}
 			}
 		}
 	}

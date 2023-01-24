@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Acquaintance from './Acquaintance';
 import Buttons from './Buttons';
 import EmailAndPasswordStep from './EmailAndPasswordStep';
+import Orientation from './Orientation';
 import styles from './styles.module.scss';
 
 export default function Form() {
@@ -13,6 +14,8 @@ export default function Form() {
 				return <EmailAndPasswordStep />;
 			case 1:
 				return <Acquaintance />;
+			case 2:
+				return <Orientation />;
 			default:
 				return <EmailAndPasswordStep />;
 		}
@@ -26,7 +29,7 @@ export default function Form() {
 			<div className={modalStyles.join(' ')}>
 				<div className={styles.form}>
 					{conditionalComponent()}
-					<Buttons page={page} setPage={setPage} handleSubmit={handleSubmit}/>
+					<Buttons page={page} setPage={setPage} handleSubmit={handleSubmit} />
 				</div>
 			</div>
 		</>
