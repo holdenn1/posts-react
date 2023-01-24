@@ -9,12 +9,12 @@ export default function Buttons({ page, setPage, handleSubmit }) {
 					Back
 				</button>
 			)}
-			{page === 0 || page === 1 ? (
+			{page === 0 || page <= 4 ? (
 				<button className={styles.nextBtn} onClick={handleSubmit}>
 					Next
 				</button>
 			) : (
-				<button>Submit</button>
+				<button className={styles.submitBtn}>Submit</button>
 			)}
 		</div>
 	);

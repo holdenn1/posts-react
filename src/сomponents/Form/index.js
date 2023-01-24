@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import Acquaintance from './Acquaintance';
+import Avatar from './Avatar';
+import BirthDate from './BirthDate';
 import Buttons from './Buttons';
+import Demands from './Demands';
 import EmailAndPasswordStep from './EmailAndPasswordStep';
 import Orientation from './Orientation';
 import styles from './styles.module.scss';
@@ -15,7 +18,13 @@ export default function Form() {
 			case 1:
 				return <Acquaintance />;
 			case 2:
+				return <BirthDate />;
+			case 3:
 				return <Orientation />;
+			case 4:
+				return <Demands />;
+			case 5:
+				return <Avatar />;
 			default:
 				return <EmailAndPasswordStep />;
 		}
