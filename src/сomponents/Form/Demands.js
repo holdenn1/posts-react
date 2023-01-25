@@ -1,12 +1,13 @@
 import React from 'react';
 import styles from './styles.module.scss';
 import aboutYouImg from './../../assets/img/bout-you-sign-up.png';
+import TitleForm from '../UI/Form/TitleForm/TitleForm';
 
 export default function Demands() {
 	return (
 		<div className={styles.formContainer}>
 			<img className={styles.formImg} src={aboutYouImg} alt="" />
-			<h3 className={styles.titleForm}>What are you looking for?</h3>
+			<TitleForm>What are you looking for?</TitleForm>
 			<ul className={styles.demandsList}>
 				<li>
 					<input
@@ -15,11 +16,11 @@ export default function Demands() {
 						id="conversation"
 						value="conversation"
 					/>
-					<label for="conversation">Conversation</label>
+					<label htmlFor="conversation">Conversation</label>
 				</li>
 				<li>
 					<input type="checkbox" name="demand" id="flirt" value="flirt" />
-					<label for="flirt">Flirt</label>
+					<label htmlFor="flirt">Flirt</label>
 				</li>
 				<li>
 					<input
@@ -28,7 +29,7 @@ export default function Demands() {
 						id="find-friends"
 						value="find-friends"
 					/>
-					<label for="find-friends">Find friends</label>
+					<label htmlFor="find-friends">Find friends</label>
 				</li>
 				<li>
 					<input
@@ -37,15 +38,15 @@ export default function Demands() {
 						id="find-love"
 						value="find-love"
 					/>
-					<label for="find-love">Find love</label>
+					<label htmlFor="find-love">Find love</label>
 				</li>
 				<li>
 					<input type="checkbox" name="demand" id="date" value="date" />
-					<label for="date">Go on a date</label>
+					<label htmlFor="date">Go on a date</label>
 				</li>
 				<li>
 					<input type="checkbox" name="demand" id="talk" value="talk" />
-					<label for="talk">Hot talk</label>
+					<label htmlFor="talk">Hot talk</label>
 				</li>
 			</ul>
 		</div>

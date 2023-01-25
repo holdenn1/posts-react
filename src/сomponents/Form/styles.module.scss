@@ -4,9 +4,7 @@
 	left: 0;
 	right: 0;
 	bottom: 0;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+	display: none;
 	background: rgb(79, 77, 77, 0.7);
 	.form {
 		padding: 25px;
@@ -24,55 +22,20 @@
 			justify-content: center;
 			align-items: flex-end;
 			gap: 20px;
-			.nextBtn {
-				height: 40px;
-				max-width: 180px;
-				min-width: 120px;
-				border: none;
-				border-radius: 12px;
-				background: rgb(0, 153, 195);
-				color: aliceblue;
-				font-weight: 500;
-			}
-			.prevBtn {
-				height: 40px;
-				max-width: 180px;
-				min-width: 120px;
-				border: none;
-				border-radius: 12px;
-				background: rgb(222, 144, 0);
-				color: aliceblue;
-				font-weight: 500;
-			}
-			.submitBtn{
-				height: 40px;
-				max-width: 180px;
-				min-width: 120px;
-				border: none;
-				border-radius: 12px;
-				background: rgb(0, 70, 162);
-				color: aliceblue;
-				font-weight: 500;
-			}
+			
+			
 		}
-
 		.formContainer {
 			width: 100%;
 			display: flex;
 			flex-direction: column;
-
 			flex: 1 1 auto;
 			.formImg {
 				max-width: 140px;
 				margin: 0 auto 20px;
 			}
-			.titleForm {
-				font-size: 18px;
-				font-weight: 600;
-				text-align: center;
-				margin-bottom: 12px;
-			}
-			.titleDescripton{
+			
+			.titleDescripton {
 				font-weight: 500;
 				text-align: center;
 				line-height: 130%;
@@ -120,7 +83,7 @@
 			.orientationList {
 				display: flex;
 				flex-direction: column;
-				align-items: start;
+				align-items: flex-start;
 				width: 100%;
 				.orientationItem {
 					margin: 4px;
@@ -227,4 +190,12 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+
+.signUpBtn {
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	height: 47px;
+	cursor: pointer;
 }

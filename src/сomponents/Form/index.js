@@ -7,10 +7,24 @@ import Demands from './Demands';
 import EmailAndPasswordStep from './EmailAndPasswordStep';
 import Orientation from './Orientation';
 import styles from './styles.module.scss';
+import signUpImg from './../../assets/img/icons/sign-up-64.png';
+
+export const Context = React.createContext()
 
 export default function Form() {
-	const modalStyles = [styles.modal];
 	const [page, setPage] = useState(0);
+	const [visibleForm, setVisibleForm] = useState(false);
+	const modalStyles = [styles.modal];
+
+	const value = {
+		visibleForm,
+		setVisibleForm,
+	};
+
+	if (visibleForm) {
+		modalStyles.push(styles.modalActive);
+	}
+
 	const conditionalComponent = () => {
 		switch (page) {
 			case 0:
@@ -35,12 +49,27 @@ export default function Form() {
 	}
 	return (
 		<>
-			<div className={modalStyles.join(' ')}>
-				<div className={styles.form}>
-					{conditionalComponent()}
-					<Buttons page={page} setPage={setPage} handleSubmit={handleSubmit} />
+			<Context.Provider value={value}>
+				<div
+					className={modalStyles.join(' ')}
+					onClick={() => setVisibleForm(!visibleForm)}
+				>
+					<div className={styles.form} onClick={(e) => e.stopPropagation()}>
+						{conditionalComponent()}
+						<Buttons
+							page={page}
+							setPage={setPage}
+							handleSubmit={handleSubmit}
+						/>
+					</div>
 				</div>
-			</div>
+				<img
+					className={styles.signUpBtn}
+					onClick={() => setVisibleForm(!visibleForm)}
+					src={signUpImg}
+					alt="#"
+				/>
+			</Context.Provider>
 		</>
 	);
 }
