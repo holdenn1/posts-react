@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import Acquaintance from './Acquaintance';
-import Avatar from './Avatar';
-import BirthDate from './BirthDate';
 import Buttons from './Buttons';
-import Demands from './Demands';
 import EmailAndPasswordStep from './EmailAndPasswordStep';
-import Orientation from './Orientation';
 import styles from './styles.module.scss';
 import signUpImg from './../../assets/img/icons/sign-up-64.png';
+import AcquaintanceStep from './AcquaintanceStep';
+import AvatarStep from './AvatarStep';
+import BirthDateStep from './BirthDateStep';
+import CountryStep from './CountryStep';
+import HobbyStep from './HobbyStep';
 
-export const Context = React.createContext()
+export const Context = React.createContext();
 
 export default function Form() {
 	const [page, setPage] = useState(0);
@@ -30,15 +30,15 @@ export default function Form() {
 			case 0:
 				return <EmailAndPasswordStep />;
 			case 1:
-				return <Acquaintance />;
+				return <AcquaintanceStep />;
 			case 2:
-				return <BirthDate />;
+				return <BirthDateStep />;
 			case 3:
-				return <Orientation />;
+				return <CountryStep />;
 			case 4:
-				return <Demands />;
+				return <HobbyStep />;
 			case 5:
-				return <Avatar />;
+				return <AvatarStep />;
 			default:
 				return <EmailAndPasswordStep />;
 		}

@@ -3,7 +3,7 @@ import styles from './styles.module.scss';
 import avatar from './../../assets/img/icons/avatar.webp'
 import TitleForm from '../UI/Form/TitleForm/TitleForm';
 
-export default function Avatar() {
+export default function AvatarStep() {
 	return (
 		<div className={styles.formContainer}>
 			<img className={styles.formImg} src={avatar} alt="" />

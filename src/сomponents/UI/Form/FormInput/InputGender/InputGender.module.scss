@@ -1,0 +1,28 @@
+.genderButtons {
+	display: flex;
+	justify-content: space-around;
+	width: 100%;
+	input[type="radio"] {
+		display: none;
+	}
+	label {
+		display: inline-block;
+		cursor: pointer;
+		padding: 0px 15px;
+		line-height: 34px;
+		border: 1px solid rgb(134, 134, 134);
+		border-radius: 10px;
+		user-select: none;
+	}
+	input[type="radio"]:checked + label {
+		background: rgb(20, 118, 210);
+		color: aliceblue;
+		font-weight: 500;
+	}
+	.genderButtonsItem {
+		label {
+			width: 60px;
+			text-align: center;
+		}
+	}
+}
