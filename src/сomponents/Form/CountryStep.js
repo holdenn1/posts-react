@@ -8,7 +8,7 @@ export default function CountryStep () {
 	return (
 		<div className={styles.formContainer}>
 			<img className={styles.formImg} src={aboutYouImg} alt="" />
-			<TitleForm>choose your country</TitleForm>
+			<TitleForm>Choose your country</TitleForm>
 			<CountryInput/>
 		</div>
 	);

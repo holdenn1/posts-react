@@ -28,9 +28,21 @@
 			display: flex;
 			flex-direction: column;
 			flex: 1 1 auto;
+			position: relative;
 			.formImg {
-				max-width: 140px;
+				width: 140px;
+				height: 140px;
 				margin: 0 auto 20px;
+			}
+			.uploadImg {
+				opacity: 0;
+				width: 140px;
+				height: 140px;
+				overflow: hidden;
+				position: absolute;
+				top: 0;
+				left: 60px;
+				cursor: pointer;
 			}
 			.titleDescripton {
 				font-weight: 500;

@@ -8,7 +8,7 @@ export default function HobbyStep () {
 	return (
 		<div className={styles.formContainer}>
 			<img className={styles.formImg} src={aboutYouImg} alt="" />
-			<TitleForm>What are you looking for?</TitleForm>
+			<TitleForm>Choose your hobbies</TitleForm>
 			<InputHobby/>
 		</div>
 	);

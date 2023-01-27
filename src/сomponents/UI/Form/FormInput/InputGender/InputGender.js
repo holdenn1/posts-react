@@ -1,17 +1,35 @@
-import React from 'react'
-import styles from './InputGender.module.scss'
+import React from 'react';
+import { useContext } from 'react';
+import { formContext } from '../../../../Form/formContext';
+import styles from './InputGender.module.scss';
 
 export default function GenderInput() {
+	const gender = ['male', 'female'];
+	const { formData, setFormData } = useContext(formContext);
+
+	const handleGender = (gender) => {
+		setFormData({
+			...formData,
+			gender: gender,
+		});
+	};
 	return (
 		<div className={styles.genderButtons}>
-		<div className={styles.genderButtonsItem}>
-			<input id="gender-male" type="radio" name="gender" value="male" />
-			<label htmlFor="gender-male">Male</label>
+			{gender.map((gender, inx) => {
+				return (
+					<div key={inx} className={styles.genderButtonsItem}>
+						<input
+							id={gender}
+							type="radio"
+							name="gender"
+							value={gender}
+							checked={formData.gender === gender}
+							onChange={() => handleGender(gender)}
+						/>
+						<label htmlFor={gender}>{gender}</label>
+					</div>
+				);
+			})}
 		</div>
-		<div className={styles.genderButtonsItem}>
-			<input id="gender-female" type="radio" name="gender" value="female" />
-			<label htmlFor="gender-female">Female</label>
-		</div>
-	</div>
-	)
+	);
 }

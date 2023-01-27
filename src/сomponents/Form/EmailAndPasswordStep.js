@@ -4,6 +4,7 @@ import img from './../../assets/img/sign-up.webp';
 import TitleForm from '../UI/Form/TitleForm/TitleForm';
 import InputEmail from '../UI/Form/FormInput/InputEmail/InputEmail';
 import InputPassword from '../UI/Form/FormInput/inputPassword/InputPassword';
+
 export default function EmailAndPasswordStep() {
 	return (
 		<div className={styles.formContainer}>

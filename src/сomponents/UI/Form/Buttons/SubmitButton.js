@@ -1,15 +1,17 @@
 import React from 'react';
 import { useContext } from 'react';
-import { Context } from '../../../Form';
+import { formContext } from '../../../Form/formContext';
 import styles from './Buttons.module.scss';
 
 export default function SubmitButton({ children }) {
-	const { visibleForm, setVisibleForm } = useContext(Context);
+	const { visibleForm, setVisibleForm, setPage } = useContext(formContext);
+
+	const handleSubmit = () => {
+		setPage(0);
+		setVisibleForm(!visibleForm);
+	};
 	return (
-		<button
-			className={styles.submitBtn}
-			onClick={() => setVisibleForm(!visibleForm)}
-		>
+		<button className={styles.submitBtn} onClick={handleSubmit}>
 			{children}
 		</button>
 	);

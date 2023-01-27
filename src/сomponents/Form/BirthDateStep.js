@@ -5,6 +5,7 @@ import TitleForm from '../UI/Form/TitleForm/TitleForm';
 import InputDate from '../UI/Form/FormInput/InputDate/InputDate';
 
 export default function BirthDateStep() {
+
 	return (
 		<div className={styles.formContainer}>
 			<img className={styles.formImg} src={aboutYouImg} alt="" />

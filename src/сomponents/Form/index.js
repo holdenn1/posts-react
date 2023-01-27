@@ -8,17 +8,38 @@ import AvatarStep from './AvatarStep';
 import BirthDateStep from './BirthDateStep';
 import CountryStep from './CountryStep';
 import HobbyStep from './HobbyStep';
-
-export const Context = React.createContext();
-
+import avatar from './../../assets/img/icons/avatar.webp'
+import { checkEmail } from './../../checkFormFields/checkEmail';
+import { formContext } from './formContext';
+import { checkPassword } from '../../checkFormFields/checkPassword';
 export default function Form() {
 	const [page, setPage] = useState(0);
+	const [formData, setFormData] = useState({
+		email: '',
+		password: '',
+		name: '',
+		gender: null,
+		birthDate: '',
+		country: null,
+		hobby: [
+			{hobby: 'music', select: false},
+			{hobby: 'books', select: false},
+			{hobby: 'soccer', select: false},
+			{hobby: 'cars', select: false},
+			{hobby: 'technologies', select: false},
+			{hobby: 'photo', select: false},
+		],
+		avatar: null
+	});
 	const [visibleForm, setVisibleForm] = useState(false);
 	const modalStyles = [styles.modal];
 
 	const value = {
 		visibleForm,
 		setVisibleForm,
+		setPage,
+		formData,
+		setFormData,
 	};
 
 	if (visibleForm) {
@@ -45,11 +66,19 @@ export default function Form() {
 	};
 
 	function handleSubmit() {
+		/* 	if (page === 0) {
+			if (!checkEmail(formData.email)) {
+				return alert('Test');
+			}
+			if(!checkPassword(formData.password)){
+				return alert('Test2')
+			}
+		} */
 		setPage(page + 1);
 	}
 	return (
 		<>
-			<Context.Provider value={value}>
+			<formContext.Provider value={value}>
 				<div
 					className={modalStyles.join(' ')}
 					onClick={() => setVisibleForm(!visibleForm)}
@@ -69,7 +98,7 @@ export default function Form() {
 					src={signUpImg}
 					alt="#"
 				/>
-			</Context.Provider>
+			</formContext.Provider>
 		</>
 	);
 }

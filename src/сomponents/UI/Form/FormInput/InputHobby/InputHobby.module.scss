@@ -18,6 +18,7 @@
 			transition: all 0.2s;
 			cursor: pointer;
 			padding: 4px 8px;
+			text-transform: capitalize;
 			&::before {
 				content: "\2714";
 				display: inline-block;
