@@ -47,6 +47,8 @@ export default function Form() {
 		setPage,
 		formData,
 		setFormData,
+		errorVisible,
+		setErrorVisible,
 	};
 
 	const conditionalComponent = () => {
@@ -69,7 +71,7 @@ export default function Form() {
 	};
 
 	function showError(text) {
-		return setErrorVisible(!errorVisible), setErrorNoticeText(text);
+		return setErrorVisible(true), setErrorNoticeText(text);
 	}
 
 	function handleSubmit() {
@@ -140,16 +142,7 @@ export default function Form() {
 					onClick={() => setVisibleForm(!visibleForm)}
 				>
 					<div className={styles.form} onClick={(e) => e.stopPropagation()}>
-						{errorVisible ? (
-							<ErrorNotice
-								errorVisible={errorVisible}
-								setErrorVisible={setErrorVisible}
-							>
-								{errorNoticeText}
-							</ErrorNotice>
-						) : (
-							''
-						)}
+						{errorVisible ? <ErrorNotice>{errorNoticeText}</ErrorNotice> : ''}
 						{conditionalComponent()}
 						<Buttons
 							page={page}

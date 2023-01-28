@@ -1,19 +1,16 @@
 import React from 'react';
 import styles from './Filter.module.scss';
 import filterIcon from './../../assets/img/icons/icons8-funnel-50.png';
+import classNames from 'classnames';
 
-export default function Filter({data}) {
-	const modalStyles = [styles.filter];
-
-	if (data.visible) {
-		modalStyles.push(styles.filterActive);
-	}
-
+export default function Filter({ data }) {
 	return (
 		<>
 			<div
-				className={modalStyles.join(' ')}
-				onClick={() =>data.setVisible(!data.visible)}
+				className={classNames(styles.filter, {
+					[styles.filterActive]: data.visible,
+				})}
+				onClick={() => data.setVisible(!data.visible)}
 			>
 				<div
 					className={styles.filtercontant}
