@@ -3,7 +3,6 @@ import ErrorText from '../../Errors/ErrorText';
 import styles from './styles.module.scss';
 
 export default function CurrentUser({ user, error }) {
-	console.log(error.length);
 	return (
 		<>
 			{error.length > 0 ? (

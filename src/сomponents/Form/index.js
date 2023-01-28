@@ -1,4 +1,6 @@
+/* eslint-disable default-case */
 import React, { useState } from 'react';
+import classNames from 'classnames';
 import Buttons from './Buttons';
 import EmailAndPasswordStep from './EmailAndPasswordStep';
 import styles from './styles.module.scss';
@@ -8,13 +10,19 @@ import AvatarStep from './AvatarStep';
 import BirthDateStep from './BirthDateStep';
 import CountryStep from './CountryStep';
 import HobbyStep from './HobbyStep';
-import avatar from './../../assets/img/icons/avatar.webp'
 import { checkEmail } from './../../checkFormFields/checkEmail';
 import { formContext } from './formContext';
 import { checkPassword } from '../../checkFormFields/checkPassword';
+import { checkOnEmptyRow } from '../../checkFormFields/checkName';
+import { checkHobbies } from '../../checkFormFields/checkHobbies';
+import ErrorNotice from '../Errors/ErrorNotice';
+
 export default function Form() {
 	const [page, setPage] = useState(0);
-	const [formData, setFormData] = useState({
+	const [visibleForm, setVisibleForm] = useState(false);
+	const [errorVisible, setErrorVisible] = useState(false);
+	const [errorNoticeText, setErrorNoticeText] = useState('');
+	const initialData = {
 		email: '',
 		password: '',
 		name: '',
@@ -22,18 +30,17 @@ export default function Form() {
 		birthDate: '',
 		country: null,
 		hobby: [
-			{hobby: 'music', select: false},
-			{hobby: 'books', select: false},
-			{hobby: 'soccer', select: false},
-			{hobby: 'cars', select: false},
-			{hobby: 'technologies', select: false},
-			{hobby: 'photo', select: false},
+			{ hobby: 'music', select: false },
+			{ hobby: 'books', select: false },
+			{ hobby: 'soccer', select: false },
+			{ hobby: 'cars', select: false },
+			{ hobby: 'technologies', select: false },
+			{ hobby: 'photo', select: false },
 		],
-		avatar: null
-	});
-	const [visibleForm, setVisibleForm] = useState(false);
-	const modalStyles = [styles.modal];
-
+		avatar: null,
+		location: null,
+	};
+	const [formData, setFormData] = useState(initialData);
 	const value = {
 		visibleForm,
 		setVisibleForm,
@@ -41,10 +48,6 @@ export default function Form() {
 		formData,
 		setFormData,
 	};
-
-	if (visibleForm) {
-		modalStyles.push(styles.modalActive);
-	}
 
 	const conditionalComponent = () => {
 		switch (page) {
@@ -65,25 +68,88 @@ export default function Form() {
 		}
 	};
 
-	function handleSubmit() {
-		/* 	if (page === 0) {
-			if (!checkEmail(formData.email)) {
-				return alert('Test');
-			}
-			if(!checkPassword(formData.password)){
-				return alert('Test2')
-			}
-		} */
-		setPage(page + 1);
+	function showError(text) {
+		return setErrorVisible(!errorVisible), setErrorNoticeText(text);
 	}
+
+	function handleSubmit() {
+		switch (page) {
+			case 0:
+				if (!checkEmail(formData.email)) {
+					return showError('Enter a valid email');
+				}
+				if (!checkPassword(formData.password)) {
+					return showError(
+						'Password must contain at least six characters, at least one letter, one number and one special character'
+					);
+				} else {
+					setPage(page + 1);
+				}
+				break;
+			case 1:
+				if (checkOnEmptyRow(formData.name)) {
+					return showError('Name is requred field');
+				}
+				if (formData.gender == null) {
+					return showError('Choose your gender please, this is requred field');
+				} else {
+					setPage(page + 1);
+				}
+				break;
+			case 2:
+				if (formData.birthDate.length === 0) {
+					return showError('Please indicate your birthday');
+				} else {
+					setPage(page + 1);
+				}
+				break;
+			case 3:
+				if (formData.country == null) {
+					return showError('Please select your country');
+				} else {
+					setPage(page + 1);
+				}
+				break;
+			case 4:
+				if (checkHobbies(formData.hobby).length < 3) {
+					return showError('You must choose at least three hobbies');
+				} else {
+					setPage(page + 1);
+				}
+				break;
+			case 5:
+				if (formData.avatar == null) {
+					return showError('Upload photo');
+				} else {
+					setPage(0);
+					setVisibleForm(!visibleForm);
+					console.log(formData);
+					setFormData(initialData);
+				}
+				break;
+		}
+	}
+
 	return (
 		<>
 			<formContext.Provider value={value}>
 				<div
-					className={modalStyles.join(' ')}
+					className={classNames(styles.modal, {
+						[styles.modalActive]: visibleForm,
+					})}
 					onClick={() => setVisibleForm(!visibleForm)}
 				>
 					<div className={styles.form} onClick={(e) => e.stopPropagation()}>
+						{errorVisible ? (
+							<ErrorNotice
+								errorVisible={errorVisible}
+								setErrorVisible={setErrorVisible}
+							>
+								{errorNoticeText}
+							</ErrorNotice>
+						) : (
+							''
+						)}
 						{conditionalComponent()}
 						<Buttons
 							page={page}

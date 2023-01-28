@@ -15,7 +15,7 @@ export default function Buttons({ page, setPage, handleSubmit }) {
 			{page === 0 || page <= 4 ? (
 				<NextButton handleSubmit={handleSubmit}>Next</NextButton>
 			) : (
-				<SubmitButton>Submit</SubmitButton>
+				<SubmitButton handleSubmit={handleSubmit}>Submit</SubmitButton>
 			)}
 		</div>
 	);

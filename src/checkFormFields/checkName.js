@@ -1,3 +1,3 @@
 export function checkOnEmptyRow(name) {
-	return /^\s*$/.test(name.value);
+	return /^\s*$/.test(name);
 }
