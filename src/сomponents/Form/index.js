@@ -142,7 +142,7 @@ export default function Form() {
 					onClick={() => setVisibleForm(!visibleForm)}
 				>
 					<div className={styles.form} onClick={(e) => e.stopPropagation()}>
-						{errorVisible ? <ErrorNotice>{errorNoticeText}</ErrorNotice> : ''}
+						{errorVisible && <ErrorNotice>{errorNoticeText}</ErrorNotice>}
 						{conditionalComponent()}
 						<Buttons
 							page={page}
