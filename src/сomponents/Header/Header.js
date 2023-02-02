@@ -1,6 +1,7 @@
 import React from 'react';
 import Filter from '../Filter/Filter';
-import Form from '../Form';
+
+import MainForm from '../Form';
 import styles from './Header.module.scss';
 
 export default function Header({ data, title }) {
@@ -10,7 +11,7 @@ export default function Header({ data, title }) {
 				{title}
 			</a>
 			{data ? <Filter data={data} /> : ''}
-			<Form/>
+			<MainForm/>
 		</header>
 	);
 }
