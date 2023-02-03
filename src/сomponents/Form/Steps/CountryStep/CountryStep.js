@@ -5,6 +5,7 @@ import TitleForm from '../../../UI/Form/TitleForm/TitleForm';
 import FormContainer from '../../../UI/Form/FormContainer/FormContainer';
 import CountryListContainer from '../../../UI/Form/CountryListContainer/CountryListContainer';
 import SelectInline from '../../../UI/Form/FormInput/SelectInline/SelectInline';
+import GenderButtons from "../../../UI/Form/Buttons/GenderButtons/GenderButtons";
 
 export default function CountryStep(props) {
 	const options = [
@@ -18,10 +19,16 @@ export default function CountryStep(props) {
 			<img className={styles.formImg} src={aboutYouImg} alt="" />
 			<TitleForm>Choose your country</TitleForm>
 			<CountryListContainer>
-				<SelectInline
-					name="country"
-					options={options}
-				/>
+				{options.map(({value}) => {
+					return(
+						<div key={value}>
+							<SelectInline
+								name="country"
+								value={value}
+							/>
+						</div>
+					)
+				})}
 			</CountryListContainer>
 		</FormContainer>
 	);

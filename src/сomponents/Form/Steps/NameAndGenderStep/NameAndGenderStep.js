@@ -23,10 +23,16 @@ export default function NameAndGenderStep(props) {
       />
       <TitleForm>Choose your gender</TitleForm>
       <GenderButtons>
-        <SelectInline
-          name="gender"
-          options={options}
-        />
+        {options.map(({value}) => {
+          return(
+            <div key={value}>
+              <SelectInline
+                name="gender"
+                value={value}
+              />
+            </div>
+          )
+        })}
       </GenderButtons>
     </FormContainer>
   );

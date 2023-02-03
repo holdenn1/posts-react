@@ -1,25 +1,14 @@
 import React from 'react';
-import {Field} from 'formik'
+import {Field, useField} from 'formik'
 
-export default function SelectInline({
-                                         name,
-                                         options,
-                                         ...props
-                                       }) {
-  const renderOption = ({value: currentValue, text}) => {
-    return (
-      <div key={currentValue}>
-        <Field
-          id={currentValue}
-          type='radio'
-          name={name}
-          value={currentValue}
-          {...props}
-        />
-        <label htmlFor={currentValue}>{text}</label>
-      </div>
-    );
-  };
+export default function SelectInline(props) {
+  const [field, meta] = useField({...props, type: 'radio'});
 
-  return <>{options.map(renderOption)}</>;
+  return <> <input
+    id={props.value}
+    type='radio'
+    {...field}
+    {...props}
+  />
+    <label htmlFor={props.value}>{props.value}</label></>;
 }

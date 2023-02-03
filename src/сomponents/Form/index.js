@@ -63,7 +63,7 @@ export default function MainForm() {
   };
 
   const onSubmitForm = (values, resetForm) => {
-    const data = { ...formData, ...values };
+    const data = {...formData, ...values};
     setFormData(data);
     setStep(step + 1)
     if (step === 5) {
@@ -81,7 +81,7 @@ export default function MainForm() {
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
-          onSubmit={(values, { resetForm }) => onSubmitForm(values, resetForm)}>
+          onSubmit={(values, {resetForm}) => onSubmitForm(values, resetForm)}>
           {(props) => (
             <>
               <div

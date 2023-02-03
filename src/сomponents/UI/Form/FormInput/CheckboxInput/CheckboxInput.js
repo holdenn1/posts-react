@@ -1,25 +1,19 @@
-import {Field} from 'formik';
+import {useField} from 'formik';
 import React from 'react';
 
-export default function CheckboxInput({
-                                          options,
-                                          name,
-                                          ...props
-                                        }) {
+export default function CheckboxInput(props) {
 
-  const renderOption = ({hobby: currentHobby, select}) => {
-    return (
-      <div key={currentHobby}>
-        <Field
-          id={currentHobby}
-          type='checkbox'
-          name={name}
-          value={currentHobby}
-          {...props}
-        />
-        <label htmlFor={currentHobby}>{currentHobby}</label>
-      </div>
-    );
-  };
-  return <>{options.map(renderOption)}</>;
+  const [field, meta] = useField({...props, type: 'checkbox'});
+
+  return (
+    <>
+      <input
+        id={props.value}
+        type='checkbox'
+        {...field}
+        {...props}
+      />
+      <label htmlFor={props.value}>{props.value}</label>
+    </>
+  )
 }

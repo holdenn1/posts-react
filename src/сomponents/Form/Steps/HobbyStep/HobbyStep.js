@@ -5,6 +5,8 @@ import aboutYouImg from './../../../../assets/img/bout-you-sign-up.png';
 import TitleForm from '../../../UI/Form/TitleForm/TitleForm';
 import HobbyListContainer from '../../../UI/Form/HobbyListContainer/HobbyListContainer';
 import CheckboxInput from '../../../UI/Form/FormInput/CheckboxInput/CheckboxInput';
+import SelectInline from "../../../UI/Form/FormInput/SelectInline/SelectInline";
+import GenderButtons from "../../../UI/Form/Buttons/GenderButtons/GenderButtons";
 
 export default function HobbyStep({ values }) {
 	const options = [
@@ -20,10 +22,18 @@ export default function HobbyStep({ values }) {
 			<img className={styles.formImg} src={aboutYouImg} alt="" />
 			<TitleForm>Choose your hobbies</TitleForm>
 			<HobbyListContainer>
-				<CheckboxInput
-					name="hobby"
-					options={options}
-				/>
+				{options.map(({hobby}) => {
+					return(
+						<div key={hobby}>
+							<CheckboxInput
+								name="hobby"
+								value={hobby}
+							/>
+
+						</div>
+					)
+				})}
+
 			</HobbyListContainer>
 		</FormContainer>
 	);
