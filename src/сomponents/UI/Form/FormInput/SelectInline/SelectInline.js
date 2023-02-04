@@ -1,8 +1,8 @@
 import React from 'react';
-import {Field, useField} from 'formik'
+import {useField} from 'formik'
 
 export default function SelectInline(props) {
-  const [field, meta] = useField({...props, type: 'radio'});
+  const [field] = useField({...props, type: 'radio'});
 
   return <> <input
     id={props.value}
@@ -10,5 +10,6 @@ export default function SelectInline(props) {
     {...field}
     {...props}
   />
-    <label htmlFor={props.value}>{props.value}</label></>;
+    <label htmlFor={props.value}>{props.value}</label>
+  </>;
 }

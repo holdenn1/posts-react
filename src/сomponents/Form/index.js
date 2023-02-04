@@ -13,6 +13,8 @@ import CountryStep from './Steps/CountryStep/CountryStep';
 import HobbyStep from './Steps/HobbyStep/HobbyStep';
 import AvatarStep from './Steps/AvatarStep/AvatarStep';
 import validationSchema from "../../utils/schema/validationSchema";
+import ErrorNoticeMassage from "../Errors/ErrorNoticeMassage";
+
 
 export default function MainForm() {
   const [step, setStep] = useState(0);
@@ -22,11 +24,11 @@ export default function MainForm() {
     email: '',
     password: '',
     name: '',
-    gender: null,
+    gender: '',
     birthDate: '',
-    country: null,
-    hobby: null,
-    file: null,
+    country: '',
+    hobby: [],
+    file: '',
   };
 
   const value = {
@@ -34,6 +36,7 @@ export default function MainForm() {
     setVisibleForm,
     step,
     setStep,
+
   };
   const renderSteps = (props) => {
     switch (step) {
@@ -62,6 +65,7 @@ export default function MainForm() {
     }
   };
 
+
   const onSubmitForm = (values, resetForm) => {
     const data = {...formData, ...values};
     setFormData(data);
@@ -83,6 +87,7 @@ export default function MainForm() {
           validationSchema={validationSchema}
           onSubmit={(values, {resetForm}) => onSubmitForm(values, resetForm)}>
           {(props) => (
+
             <>
               <div
 
@@ -96,8 +101,9 @@ export default function MainForm() {
                   className={styles.form}
                   onClick={(e) => e.stopPropagation()}
                 >
+                {/*  {!props.isValid  && <ErrorNoticeMassage isValid={props.isValid}/>}*/}
                   {renderSteps(props)}
-                  <Buttons/>
+                  <Buttons formData={props} />
                 </Form>
               </div>
               <img

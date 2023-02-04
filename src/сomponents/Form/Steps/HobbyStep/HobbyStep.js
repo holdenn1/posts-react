@@ -5,10 +5,9 @@ import aboutYouImg from './../../../../assets/img/bout-you-sign-up.png';
 import TitleForm from '../../../UI/Form/TitleForm/TitleForm';
 import HobbyListContainer from '../../../UI/Form/HobbyListContainer/HobbyListContainer';
 import CheckboxInput from '../../../UI/Form/FormInput/CheckboxInput/CheckboxInput';
-import SelectInline from "../../../UI/Form/FormInput/SelectInline/SelectInline";
-import GenderButtons from "../../../UI/Form/Buttons/GenderButtons/GenderButtons";
+import ErrorFormText from "../../../Errors/ErrorFormText";
 
-export default function HobbyStep({ values }) {
+export default function HobbyStep({ values, ...props }) {
 	const options = [
 		{ hobby: 'music', select: false },
 		{ hobby: 'books', select: false },
@@ -29,11 +28,10 @@ export default function HobbyStep({ values }) {
 								name="hobby"
 								value={hobby}
 							/>
-
 						</div>
 					)
 				})}
-
+				{props.touched.hobby && props.errors.hobby ? <ErrorFormText>{props.errors.hobby}</ErrorFormText> : null}
 			</HobbyListContainer>
 		</FormContainer>
 	);

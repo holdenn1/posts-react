@@ -1,13 +1,13 @@
 import React from 'react';
 import styles from './UserCard.module.scss';
 import { Link } from 'react-router-dom';
-import ErrorText from '../Errors/ErrorText';
+import PageErrorText from '../Errors/PageErrorText';
 
 export default function User({ users, error }) {
 	return (
 		<>
 			{error.length > 0 ? (
-				<ErrorText>{error}</ErrorText>
+				<PageErrorText>{error}</PageErrorText>
 			) : (
 				users.map((item) => {
 					return (

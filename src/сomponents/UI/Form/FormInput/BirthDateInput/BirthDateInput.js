@@ -15,6 +15,7 @@ export default function BirthDateInput({
 			value={value}
 			className={styles.birthDate}
 			{...props}
+
 		/>
 	);
 }

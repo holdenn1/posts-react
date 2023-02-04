@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from './Buttons.module.scss';
 
-export default function NextButton({children, handleSubmit}) {
+export default function NextButton({children, handleStep}) {
 	return (
-		<button type='submit' className={styles.nextBtn} onClick={handleSubmit}>
+		<button type='submit' className={styles.nextBtn} onClick={handleStep}>
 			{children}
 		</button>
 	);

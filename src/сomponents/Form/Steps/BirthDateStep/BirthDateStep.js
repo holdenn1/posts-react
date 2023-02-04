@@ -4,7 +4,8 @@ import BirthDateInput from '../../../UI/Form/FormInput/BirthDateInput/BirthDateI
 import TitleForm from '../../../UI/Form/TitleForm/TitleForm';
 import aboutYouImg from './../../../../assets/img/bout-you-sign-up.png';
 import styles from './../../styles.module.scss';
-export default function BirthDateStep({ values, handleChange }) {
+import ErrorFormText from "../../../Errors/ErrorFormText";
+export default function BirthDateStep({ values, handleChange, ...props }) {
 	return (
 		<FormContainer>
 			<img className={styles.formImg} src={aboutYouImg} alt="" />
@@ -14,6 +15,7 @@ export default function BirthDateStep({ values, handleChange }) {
 				value={values.birthDate}
 				handleChange={handleChange}
 			/>
+			{props.touched.birthDate && props.errors.birthDate ? <ErrorFormText>{props.errors.birthDate}</ErrorFormText> : null}
 		</FormContainer>
 	);
 }

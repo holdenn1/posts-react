@@ -1,12 +1,12 @@
 import React from 'react';
-import ErrorText from '../../Errors/ErrorText';
+import PageErrorText from '../../Errors/PageErrorText';
 import styles from './styles.module.scss';
 
 export default function CurrentPost({ post, error }) {
 	return (
 		<>
 			{error.length > 0 ? (
-				<ErrorText>{error}</ErrorText>
+				<PageErrorText>{error}</PageErrorText>
 			) : (
 				post.map((post) => {
 					return (

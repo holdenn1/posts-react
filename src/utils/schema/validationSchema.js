@@ -1,7 +1,13 @@
 import * as yup from 'yup';
 
 export default yup.object().shape({
-  email: yup.string().required().email(),
-  password: yup.string().required().max(6),
+  email: yup.string().required('Email is required field').email('Invalid email address'),
+  password: yup.string().required('Password is required field').min(6, 'Password must contain at least six characters').matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/, 'Password must contain a letter, a number and one special character'),
+  name: yup.string().required('Name is required field').min(1, 'Name must have at least one character'),
+  gender: yup.string().required('Gender is required field'),
+  birthDate: yup.string().required('Please indicate your birthday'),
+  country: yup.string().required('This field is required'),
+  hobby: yup.array().required('Hobby is required field').min(3, 'Choose at least 3 hobbies'),
+  file: yup.string().required('Avatar is required field')
 
 });

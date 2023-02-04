@@ -1,9 +1,10 @@
 import {useField} from 'formik';
 import React from 'react';
 
+
 export default function CheckboxInput(props) {
 
-  const [field, meta] = useField({...props, type: 'checkbox'});
+  const [field] = useField({...props, type: 'checkbox'});
 
   return (
     <>

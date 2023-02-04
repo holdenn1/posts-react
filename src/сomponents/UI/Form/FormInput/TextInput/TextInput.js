@@ -1,10 +1,11 @@
-import classNames from 'classnames';
 import React from 'react';
 import styles from './TextInput.module.scss';
 import {useField} from "formik";
+import ErrorFormText from "../../../../Errors/ErrorFormText";
 
 export default function TextInput({...props}) {
   const [field, meta] = useField(props)
+
   return (
     <>
       <input
@@ -13,6 +14,7 @@ export default function TextInput({...props}) {
         {...field}
         {...props}
       />
+      {meta.touched && meta.error ? <ErrorFormText>{meta.error}</ErrorFormText> : null}
     </>
   );
 }

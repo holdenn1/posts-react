@@ -1,12 +1,12 @@
 import React from 'react';
-import ErrorText from '../../Errors/ErrorText';
+import PageErrorText from '../../Errors/PageErrorText';
 import styles from './styles.module.scss';
 
 export default function CurrentUser({ user, error }) {
 	return (
 		<>
 			{error.length > 0 ? (
-				<ErrorText>{error}</ErrorText>
+				<PageErrorText>{error}</PageErrorText>
 			) : (
 				user.map((item) => {
 					return (

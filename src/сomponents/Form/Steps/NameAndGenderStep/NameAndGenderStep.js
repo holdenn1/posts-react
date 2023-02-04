@@ -6,12 +6,14 @@ import TitleForm from '../../../UI/Form/TitleForm/TitleForm';
 import aboutYouImg from './../../../../assets/img/bout-you-sign-up.png';
 import styles from './../../styles.module.scss';
 import GenderButtons from '../../../UI/Form/Buttons/GenderButtons/GenderButtons';
+import ErrorFormText from "../../../Errors/ErrorFormText";
 
 export default function NameAndGenderStep(props) {
   const options = [
     {value: 'male', text: 'male'},
     {value: 'female', text: 'female'},
   ];
+
   return (
     <FormContainer>
       <img className={styles.formImg} src={aboutYouImg} alt=""/>
@@ -34,6 +36,7 @@ export default function NameAndGenderStep(props) {
           )
         })}
       </GenderButtons>
+      {props.touched.gender && props.errors.gender ? <ErrorFormText>{props.errors.gender}</ErrorFormText> : null}
     </FormContainer>
   );
 }
