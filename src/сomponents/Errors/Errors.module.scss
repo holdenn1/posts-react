@@ -6,28 +6,6 @@
   margin: 40px 0 100px;
 }
 
-.notice {
-  position: absolute;
-  top: 25px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 100;
-  background: #505050;
-  width: 250px;
-  height: 60px;
-  border-radius: 16px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  p {
-    color: red;
-  }
-}
-
-.hideError {
-  top: -200px;
-}
 
 .formTextError {
   font-size: 16px;

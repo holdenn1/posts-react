@@ -3,7 +3,7 @@ import {  useParams } from 'react-router-dom';
 import styles from './styles.module.scss';
 import CurrentUser from './CurrentUser';
 import PostsList from './PostsList';
-import Spinner from '../../Spinner/Spinner';
+import Spinner from './../../UI/Spinner/Spinner';
 
 
 class PostsComponent extends Component {

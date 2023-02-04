@@ -1,5 +1,5 @@
 import React, { Component, createRef } from 'react';
-import Spinner from '../Spinner/Spinner';
+import Spinner from './../UI/Spinner/Spinner';
 import User from './User';
 
 export default class UserCard extends Component {

@@ -13,31 +13,13 @@ import CountryStep from './Steps/CountryStep/CountryStep';
 import HobbyStep from './Steps/HobbyStep/HobbyStep';
 import AvatarStep from './Steps/AvatarStep/AvatarStep';
 import validationSchema from "../../utils/schema/validationSchema";
-import ErrorNoticeMassage from "../Errors/ErrorNoticeMassage";
-
 
 export default function MainForm() {
   const [step, setStep] = useState(0);
   const [visibleForm, setVisibleForm] = useState(false);
   const [formData, setFormData] = useState({})
-  const initialValues = {
-    email: '',
-    password: '',
-    name: '',
-    gender: '',
-    birthDate: '',
-    country: '',
-    hobby: [],
-    file: '',
-  };
+  const currentValidationSchema = validationSchema[step]
 
-  const value = {
-    visibleForm,
-    setVisibleForm,
-    step,
-    setStep,
-
-  };
   const renderSteps = (props) => {
     switch (step) {
       case 0: {
@@ -66,7 +48,7 @@ export default function MainForm() {
   };
 
 
-  const onSubmitForm = (values, resetForm) => {
+  const handleSubmit = (values, resetForm) => {
     const data = {...formData, ...values};
     setFormData(data);
     setStep(step + 1)
@@ -79,13 +61,29 @@ export default function MainForm() {
   }
 
 
+
+
   return (
     <>
-      <myFormContext.Provider value={value}>
+      <myFormContext.Provider value={{
+        visibleForm,
+        setVisibleForm,
+        step,
+        setStep,
+      }}>
         <Formik
-          initialValues={initialValues}
-          validationSchema={validationSchema}
-          onSubmit={(values, {resetForm}) => onSubmitForm(values, resetForm)}>
+          initialValues={{
+            email: '',
+            password: '',
+            name: '',
+            gender: '',
+            birthDate: '',
+            country: '',
+            hobby: [],
+            file: '',
+          }}
+          validationSchema={currentValidationSchema}
+          onSubmit={(values, {resetForm}) => handleSubmit(values, resetForm)}>
           {(props) => (
 
             <>
@@ -101,9 +99,9 @@ export default function MainForm() {
                   className={styles.form}
                   onClick={(e) => e.stopPropagation()}
                 >
-                {/*  {!props.isValid  && <ErrorNoticeMassage isValid={props.isValid}/>}*/}
+
                   {renderSteps(props)}
-                  <Buttons formData={props} />
+                  <Buttons/>
                 </Form>
               </div>
               <img
