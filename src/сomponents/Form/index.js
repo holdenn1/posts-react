@@ -1,7 +1,6 @@
+import React,{useState} from 'react';
 import {Form, Formik} from 'formik';
-import React from 'react';
-import {useState} from 'react';
-import {myFormContext} from './myFormContext';
+import {formContext} from '../../utils/context/formContext';
 import classNames from 'classnames';
 import Buttons from '../UI/Form/Buttons/NavButtons/Buttons';
 import signUpImg from './../../assets/img/icons/sign-up-64.png';
@@ -19,6 +18,7 @@ export default function MainForm() {
   const [visibleForm, setVisibleForm] = useState(false);
   const [formData, setFormData] = useState({})
   const currentValidationSchema = validationSchema[step]
+
 
   const renderSteps = (props) => {
     switch (step) {
@@ -47,7 +47,6 @@ export default function MainForm() {
     }
   };
 
-
   const handleSubmit = (values, resetForm) => {
     const data = {...formData, ...values};
     setFormData(data);
@@ -60,16 +59,14 @@ export default function MainForm() {
     }
   }
 
-
-
-
   return (
     <>
-      <myFormContext.Provider value={{
+      <formContext.Provider value={{
         visibleForm,
         setVisibleForm,
         step,
         setStep,
+
       }}>
         <Formik
           initialValues={{
@@ -88,7 +85,6 @@ export default function MainForm() {
 
             <>
               <div
-
                 className={classNames(styles.modal, {
                   [styles.modalActive]: visibleForm,
                 })}
@@ -99,7 +95,6 @@ export default function MainForm() {
                   className={styles.form}
                   onClick={(e) => e.stopPropagation()}
                 >
-
                   {renderSteps(props)}
                   <Buttons/>
                 </Form>
@@ -113,7 +108,7 @@ export default function MainForm() {
             </>
           )}
         </Formik>
-      </myFormContext.Provider>
+      </formContext.Provider>
     </>
   );
 }

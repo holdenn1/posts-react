@@ -8,20 +8,20 @@ import FormContainer from './../../../UI/Form/FormContainer/FormContainer';
 export default function EmailAndPasswordStep(props) {
 
   return (
-    <FormContainer>
-      <img className={styles.formImg} src={img} alt=""/>
-      <TitleForm>Fill in thr fields below</TitleForm>
-      <TextInput
-        type="email"
-        name="email"
-        placeholder="Input your email"
-      />
-      <TextInput
-        type="password"
-        name="password"
-        placeholder="Input your password"
-      />
-    </FormContainer>
+      <FormContainer>
+        <img className={styles.formImg} src={img} alt=""/>
+        <TitleForm>Fill in thr fields below</TitleForm>
+        <TextInput
+          type="email"
+          name="email"
+          placeholder="Input your email"
+        />
+        <TextInput
+          type="password"
+          name="password"
+          placeholder="Input your password"
+        />
+      </FormContainer>
   );
 }
 

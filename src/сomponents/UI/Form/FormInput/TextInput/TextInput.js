@@ -2,15 +2,15 @@ import React from 'react';
 import styles from './TextInput.module.scss';
 import {useField} from "formik";
 import ErrorFormText from "../../../../Errors/ErrorFormText";
+import * as classNames from "classnames";
 
 export default function TextInput({...props}) {
   const [field, meta] = useField(props)
-
   return (
     <>
       <input
         type='name'
-        className={styles.inputForm}
+        className={classNames(styles.inputForm, {[styles.error]: meta.error}) }
         {...field}
         {...props}
       />

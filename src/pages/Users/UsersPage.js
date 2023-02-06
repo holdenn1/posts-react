@@ -28,22 +28,22 @@ export default function UsersPage() {
 
 	return (
 		<>
-			<Header
-				title="Users"
-				data={{
-					inputAge,
-					setInputAge,
-					findUsers,
-					searchUsers,
-					visible,
-					setVisible,
-				}}
-			/>
-			<Users
-				findUsers={findUsers}
-				error={{ showErrorMassage, setShowErrorMassage }}
-			/>
-			<Footer />
+				<Header
+					title="Users"
+					data={{
+						inputAge,
+						setInputAge,
+						findUsers,
+						searchUsers,
+						visible,
+						setVisible,
+					}}
+				/>
+				<Users
+					findUsers={findUsers}
+					error={{ showErrorMassage, setShowErrorMassage }}
+				/>
+				<Footer />
 		</>
 	);
 }

@@ -13,7 +13,7 @@ export default function Filter({ data }) {
 				onClick={() => data.setVisible(!data.visible)}
 			>
 				<div
-					className={styles.filtercontant}
+					className={styles.filterContent}
 					onClick={(e) => e.stopPropagation()}
 				>
 					<h3 className={styles.filterTitle}>Filter</h3>

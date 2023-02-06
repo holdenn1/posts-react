@@ -15,28 +15,28 @@ export default function NameAndGenderStep(props) {
   ];
 
   return (
-    <FormContainer>
-      <img className={styles.formImg} src={aboutYouImg} alt=""/>
-      <TitleForm>Let's start acquaintance!</TitleForm>
-      <TextInput
-        name="name"
-        placeholder="Input your name"
+      <FormContainer>
+        <img className={styles.formImg} src={aboutYouImg} alt=""/>
+        <TitleForm>Let's start acquaintance!</TitleForm>
+        <TextInput
+          name="name"
+          placeholder="Input your name"
 
-      />
-      <TitleForm>Choose your gender</TitleForm>
-      <GenderButtons>
-        {options.map(({value}) => {
-          return(
-            <div key={value}>
-              <SelectInline
-                name="gender"
-                value={value}
-              />
-            </div>
-          )
-        })}
-      </GenderButtons>
-      {props.touched.gender && props.errors.gender ? <ErrorFormText>{props.errors.gender}</ErrorFormText> : null}
-    </FormContainer>
+        />
+        <TitleForm>Choose your gender</TitleForm>
+        <GenderButtons>
+          {options.map(({value}) => {
+            return(
+              <div key={value}>
+                <SelectInline
+                  name="gender"
+                  value={value}
+                />
+              </div>
+            )
+          })}
+        </GenderButtons>
+        {props.touched.gender && props.errors.gender ? <ErrorFormText>{props.errors.gender}</ErrorFormText> : null}
+      </FormContainer>
   );
 }
