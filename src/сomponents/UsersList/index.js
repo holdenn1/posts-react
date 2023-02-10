@@ -1,76 +1,44 @@
-import React, {Component, createRef} from 'react';
-import Spinner from './../UI/Spinner/Spinner';
+import React, {useEffect, useRef} from 'react';
+import Spinner from '../UI/Spinner/Spinner';
 import User from './User';
+import {useDispatch, useSelector} from "react-redux";
+import {fetchUsers} from "../../store/sliсes/usersSlice";
 
-export default class UsersList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      users: [],
-      isLoading: false,
-    };
-    this.lastElement = createRef();
-    this.limit = 8;
-    this.observer = new IntersectionObserver(this.loadMoreUsers);
-  }
 
-  loadUsers = async () => {
-    try {
-      this.setState({
-        isLoading: true,
-      });
-      const response = await fetch(
-        `http://localhost:3000/users?_start=${this.state.users.length}&_limit=${this.limit}`
-      );
-      const data = await response.json();
-      this.setState({
-        isLoading: false,
-        users: [...this.state.users, ...data],
-      });
-      if (data.length < this.limit) {
-        this.observer.disconnect();
-      }
-    } catch (error) {
-      this.props.error.setShowErrorMassage('Users is not a found');
-      this.setState({
-        isLoading: false,
-      });
-      console.error(error)
+function UsersList(props) {
+  const limit = useRef(8).current
+  const dispatch = useDispatch()
+  const {users, isLoading, error} = useSelector(state => state.users)
+  const observElement = useRef()
+  const observer = new IntersectionObserver(loadMoreUsers);
+
+
+  useEffect(() => {
+    observer.observe(observElement.current);
+    if (users.length && users.length % limit !== 0) {
+      observer.disconnect();
+    }
+    return () => observer.disconnect()
+  }, [users.length])
+
+
+  function loadMoreUsers([{isIntersecting}]) {
+    if (isIntersecting && !isLoading) {
+      dispatch(fetchUsers(limit))
     }
   };
 
-  async componentDidMount() {
-    this.setState({
-      isLoading: true,
-    });
-    await this.loadUsers();
-    this.observer.observe(this.lastElement.current);
-    this.setState({
-      isLoading: false,
-    });
-  }
-
-  componentWillUnmount() {
-    this.observer.disconnect();
-  }
-
-  loadMoreUsers = ([{isIntersecting}]) => {
-    if (isIntersecting && !this.state.isLoading) {
-      this.loadUsers();
-    }
-  };
-
-  render() {
-    return (
-      <>
-        <User loadedUsers={this.state.users} findUsers={this.props.findUsers}
-              error={this.props.error.showErrorMassage}/>
-        {this.state.isLoading && <Spinner/>}
-        <div
-          ref={this.lastElement}
-          style={{height: '20px', width: '100%'}}
-        ></div>
-      </>
-    );
-  }
+  return (
+    <>
+      <User loadedUsers={users} findUsers={props.findUsers}
+            error={error}/>
+      {isLoading && <Spinner/>}
+      <div
+        ref={observElement}
+        style={{height: '20px', width: '100%'}}
+      />
+    </>
+  );
 }
+
+export default UsersList;

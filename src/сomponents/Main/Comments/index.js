@@ -1,7 +1,7 @@
 import React, { Component, createRef } from 'react';
 import { useParams } from 'react-router-dom';
-import Spinner from './../../UI/Spinner/Spinner';
-import CommentList from './CommentLIst';
+import Spinner from '../../UI/Spinner/Spinner';
+import CommentList from './CommentList';
 import CurrentPost from './CurrentPost';
 import styles from './styles.module.scss';
 

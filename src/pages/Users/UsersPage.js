@@ -41,7 +41,6 @@ export default function UsersPage() {
 				/>
 				<Users
 					findUsers={findUsers}
-					error={{ showErrorMassage, setShowErrorMassage }}
 				/>
 				<Footer />
 		</>

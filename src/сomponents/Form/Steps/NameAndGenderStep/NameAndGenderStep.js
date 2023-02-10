@@ -1,6 +1,6 @@
 import React from 'react';
 import SelectInline from '../../../UI/Form/FormInput/SelectInline/SelectInline';
-import FormContainer from './../../../UI/Form/FormContainer/FormContainer';
+import FormContainer from '../../../UI/Form/FormContainer/FormContainer';
 import TextInput from '../../../UI/Form/FormInput/TextInput/TextInput';
 import TitleForm from '../../../UI/Form/TitleForm/TitleForm';
 import aboutYouImg from './../../../../assets/img/bout-you-sign-up.png';

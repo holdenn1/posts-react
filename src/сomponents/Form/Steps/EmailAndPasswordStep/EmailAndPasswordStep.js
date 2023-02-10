@@ -3,7 +3,7 @@ import styles from './../../styles.module.scss';
 import img from './../../../../assets/img/sign-up.webp';
 import TitleForm from '../../../UI/Form/TitleForm/TitleForm';
 import TextInput from '../../../UI/Form/FormInput/TextInput/TextInput';
-import FormContainer from './../../../UI/Form/FormContainer/FormContainer';
+import FormContainer from '../../../UI/Form/FormContainer/FormContainer';
 
 export default function EmailAndPasswordStep(props) {
 
