@@ -12,7 +12,7 @@ const postsSlice = createSlice({
   extraReducers: {
     [fetchPosts.pending]: (state, action) => {
       state.isLoading = true
-      state.error = ''
+      state.postsError = ''
     },
     [fetchPosts.fulfilled]: (state, action) => {
       state.isLoading = false

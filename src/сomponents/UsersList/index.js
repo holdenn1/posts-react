@@ -8,7 +8,7 @@ import {fetchUsers} from "../../store/actions/users/fetchUsers";
 function UsersList(props) {
   const limit = useRef(8).current
   const dispatch = useDispatch()
-  const {users, isLoading, error} = useSelector(state => state.users)
+  const {users, isLoading, userError} = useSelector(state => state.users)
   const observElement = useRef()
   const observer = new IntersectionObserver(loadMoreUsers);
 
@@ -30,7 +30,7 @@ function UsersList(props) {
 
   return (
     <>
-      <User loadedUsers={users} findUsers={props.findUsers} error={error}/>
+      <User loadedUsers={users} findUsers={props.findUsers} error={userError}/>
       {isLoading && <Spinner/>}
       <div
         ref={observElement}

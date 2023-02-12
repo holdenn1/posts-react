@@ -1,108 +1,48 @@
-import React, { Component, createRef } from 'react';
-import { useParams } from 'react-router-dom';
+import React, {useEffect, useRef} from 'react';
 import Spinner from '../../UI/Spinner/Spinner';
 import CommentList from './CommentList';
 import CurrentPost from './CurrentPost';
 import styles from './styles.module.scss';
+import {useDispatch, useSelector} from "react-redux";
+import {fetchCurrentPost} from "../../../store/actions/posts/fetchCurrentPost";
+import {fetchComments} from "../../../store/actions/comments/fetchComments";
 
-class CommentsComponents extends Component {
-	constructor() {
-		super();
-		this.state = {
-			post: [],
-			comments: [],
-			isLoading: false,
-			errorMassage: '',
-		};
-		this.lastElement = createRef();
-		this.limit = 4;
-		this.observer = new IntersectionObserver(this.loadMoreComments);
-	}
+export default function Comments({postId}) {
+  const limit = useRef(4).current
+  const dispatch = useDispatch()
+  const {post, currentPostError} = useSelector(state => state.currentPost)
+  const {posts, isLoading, commentsError} = useSelector(state => state.comments)
+  const observElement = useRef()
+  const observer = new IntersectionObserver(loadMoreComments);
+  const postComments = posts[postId] ? posts[postId] : []
 
-	loadPost = async () => {
-		try {
-			const response = await fetch(
-				`http://localhost:3000/posts/${this.props.id}`
-			);
-			const data = await response.json();
-			this.setState({
-				post: [data],
-				
-			});
-		} catch (error) {
-			this.setState({
-				errorMassage: 'Post is not a found',
-			})
-			
-		}
-	};
+  useEffect(() => {
+    observer.observe(observElement.current)
+    dispatch(fetchCurrentPost(postId))
+    if (postComments.length && postComments.length % limit !== 0) {
+      observer.disconnect();
+    }
+    return () => observer.disconnect()
+  }, [postComments.length])
 
-	loadComments = async () => {
-		try{
-			this.setState({
-				isLoading: true,
-			
-			});
-			const response = await fetch(
-				`http://localhost:3000/comments?postId=${this.props.id}&_start=${this.state.comments.length}&_limit=${this.limit}`
-			);
-			const data = await response.json();
-			this.setState({
-				isLoading: false,
-				comments: [...this.state.comments, ...data],
-			});
-			if (data.length < this.limit) {
-				this.observer.disconnect();
-			}
-		}catch(error){
-			this.setState({
-				isLoading: false,
-				errorMassage: 'Comments is not a found',
-			})
-			console.error(error)
-		}
-	
-	};
 
-	async componentDidMount() {
-		this.setState({
-			isLoading: true,
-		});
-		await this.loadPost();
-		await this.loadComments();
-		this.observer.observe(this.lastElement.current);
-		this.setState({
-			isLoading: false,
-		});
-	}
+  function loadMoreComments([{isIntersecting}]) {
+    if (isIntersecting && !isLoading) {
+      dispatch(fetchComments({postId, limit}))
+    }
+  };
 
-	componentWillUnmount() {
-		this.observer.disconnect();
-	}
-
-	loadMoreComments = ([{ isIntersecting }]) => {
-		if (isIntersecting && !this.state.isLoading) {
-			this.loadComments();
-		}
-	};
-	render() {
-		return (
-			<>
-				<div className={styles.main}>
-					<CurrentPost post={this.state.post} error={this.state.errorMassage}/>
-					<CommentList comments={this.state.comments} />
-					{this.state.isLoading && <Spinner />}
-				</div>
-				<div
-					ref={this.lastElement}
-					style={{ height: '20px', width: '100%' }}
-				></div>
-			</>
-		);
-	}
-}
-
-export default function Comments() {
-	const { id } = useParams();
-	return <CommentsComponents id={id} />;
+  return (
+    <>
+      <div className={styles.main}>
+        <CurrentPost post={post} error={currentPostError}/>
+        <CommentList comments={postComments} error={commentsError}/>
+        {isLoading && <Spinner/>}
+      </div>
+      <div
+        ref={observElement}
+        style={{height: '20px', width: '100%'}}
+      />
+    </>
+  );
 }

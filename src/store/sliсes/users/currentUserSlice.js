@@ -9,13 +9,13 @@ const currentUserSlice = createSlice({
   },
   extraReducers:{
     [fetchCurrentUser.pending]: (state, action) =>{
-      state.error = ''
+      state.currentUserError = ''
     },
     [fetchCurrentUser.fulfilled]: (state, action) =>{
       state.user = [action.payload]
     },
     [fetchCurrentUser.rejected]: (state, action) =>{
-      state.error = action.payload
+      state.currentUserError = action.payload
     },
   }
 })

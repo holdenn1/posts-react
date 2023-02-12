@@ -10,7 +10,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<UsersPage/>}/>
         <Route path="/posts/:id" element={<PostsPage/>}/>
-        <Route path="/posts/comments/:id" element={<CommentsPage/>}/>
+        <Route path="/comments/:id" element={<CommentsPage/>}/>
       </Routes>
     </>
   );

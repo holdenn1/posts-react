@@ -4,9 +4,7 @@ export const fetchPosts = createAsyncThunk(
   'posts/fetchPosts',
   async function({userId, limit}, {getState, rejectWithValue}){
     try {
-
       const postsStart = getState().posts.users[userId] ? getState().posts.users[userId] : [];
-
       const response = await fetch(
         `http://localhost:3000/posts?userId=${userId}&_start=${postsStart.length}&_limit=${limit}`
       );

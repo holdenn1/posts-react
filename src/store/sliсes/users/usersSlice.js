@@ -6,12 +6,12 @@ const usersSlice = createSlice({
   initialState: {
     users: [],
     isLoading: false,
-    error: '',
+    userError: '',
   },
   extraReducers: {
     [fetchUsers.pending]: (state, action) => {
       state.isLoading = true
-      state.error = ''
+      state.userError = ''
 
     },
     [fetchUsers.fulfilled]: (state, action) => {
@@ -21,7 +21,7 @@ const usersSlice = createSlice({
     },
     [fetchUsers.rejected]: (state, action) => {
       state.isLoading = false;
-      state.error = action.payload
+      state.userError = action.payload
     },
   }
 })
