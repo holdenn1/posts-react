@@ -2,7 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from './styles.module.scss';
 
-export default function PostsList({ posts }) {
+export default function PostsList({ posts}) {
+
 	return (
 		<>
 			<div className={styles.postsContainer}>

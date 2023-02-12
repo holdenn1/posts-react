@@ -3,6 +3,7 @@ import PageErrorText from '../../Errors/PageErrorText';
 import styles from './styles.module.scss';
 
 export default function CurrentUser({ user, error }) {
+
 	return (
 		<>
 			{error.length > 0 ? (

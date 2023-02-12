@@ -1,5 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit'
-import {fetchUsers} from "../actions/fetchUsers";
+import {fetchUsers} from "../../actions/users/fetchUsers";
 
 const usersSlice = createSlice({
   name: 'users',
@@ -8,7 +8,6 @@ const usersSlice = createSlice({
     isLoading: false,
     error: '',
   },
-  reducers: {},
   extraReducers: {
     [fetchUsers.pending]: (state, action) => {
       state.isLoading = true

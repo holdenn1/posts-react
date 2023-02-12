@@ -2,7 +2,7 @@ import React, {useEffect, useRef} from 'react';
 import Spinner from '../UI/Spinner/Spinner';
 import User from './User';
 import {useDispatch, useSelector} from "react-redux";
-import {fetchUsers} from "../../store/sliсes/usersSlice";
+import {fetchUsers} from "../../store/actions/users/fetchUsers";
 
 
 function UsersList(props) {
@@ -30,8 +30,7 @@ function UsersList(props) {
 
   return (
     <>
-      <User loadedUsers={users} findUsers={props.findUsers}
-            error={error}/>
+      <User loadedUsers={users} findUsers={props.findUsers} error={error}/>
       {isLoading && <Spinner/>}
       <div
         ref={observElement}
