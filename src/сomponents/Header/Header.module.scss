@@ -1,7 +1,8 @@
 .header {
 	width: 100%;
 	min-height: 70px;
-	background-color: rgb(0, 70, 162);
+	background: rgb(55,124,105);
+	background: linear-gradient(270deg, rgba(55,124,105,1) 0%, rgba(18,17,14,1) 81%);
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -12,6 +13,5 @@
 	.title {
 		font-size: 32px;
 		font-weight: 500;
-		color: aliceblue;
 	}
 }

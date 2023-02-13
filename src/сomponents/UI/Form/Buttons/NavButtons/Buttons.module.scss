@@ -11,7 +11,8 @@
 		min-width: 120px;
 		border: none;
 		border-radius: 12px;
-		background: rgb(0, 153, 195);
+		background: rgb(15,189,190);
+		background: linear-gradient(220deg, rgba(15,189,190,1) 0%, rgba(10,124,143,1) 50%);
 		color: aliceblue;
 		font-weight: 500;
 	}
@@ -22,7 +23,8 @@
 		min-width: 120px;
 		border: none;
 		border-radius: 12px;
-		background: rgb(222, 144, 0);
+		background: rgb(232,151,0);
+		background: linear-gradient(220deg, rgba(232,151,0,1) 0%, rgba(207,133,29,1) 77%);
 		color: aliceblue;
 		font-weight: 500;
 	}
@@ -33,7 +35,8 @@
 		min-width: 120px;
 		border: none;
 		border-radius: 12px;
-		background: rgb(0, 70, 162);
+		background: rgb(0,129,255);
+		background: linear-gradient(220deg, rgba(0,129,255,1) 0%, rgba(14,43,60,1) 77%);
 		color: aliceblue;
 		font-weight: 500;
 	}

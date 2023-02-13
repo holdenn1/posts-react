@@ -1,13 +1,15 @@
 .container {
   width: 220px;
   height: 360px;
-  border: 1px solid rgb(182, 182, 182);
   border-radius: 12px;
   overflow: hidden;
   margin: 0 12px 40px;
+  transition-duration: 0.3s;
 
   &:hover {
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0.5px 0px 4px 2px rgb(1, 255, 196);
+    position: relative;
+    bottom: 1px;
   }
 
   .avatar {
@@ -21,6 +23,8 @@
     align-items: center;
     flex-direction: column;
     height: 140px;
+    background: rgb(15, 190, 164);
+    background: linear-gradient(216deg, rgba(15, 190, 164, 1) 0%, rgba(20, 103, 111, 1) 75%);
 
     .name {
       font-weight: 700;

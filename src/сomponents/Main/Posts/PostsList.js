@@ -17,8 +17,8 @@ export default function PostsList({posts, error}) {
                 to={`/comments/${item.id}`}
                 key={item.id}
                 className={styles.postLink}>
-                <div className={styles.postItem}>
-                  <img src={item.photo} alt="" className={styles.postImg}></img>
+                <img src={item.photo} alt="" className={styles.postImg}></img>
+                <div className={styles.content}>
                   <h3 className={styles.postTitle}>{item.title}</h3>
                   <p className={styles.postBody}>{item.body}</p>
                 </div>

@@ -1,10 +1,19 @@
 .inputForm {
   border: none;
-  border-bottom: 1px solid rgb(149, 149, 149);
+  border-bottom: 1px solid rgb(20, 103, 111,);
   margin: 0 auto 4px;
   width: 220px;
   height: 24px;
-  background: rgb(219, 219, 219);
+  background: rgb(15, 190, 164);
+  background: linear-gradient(216deg, rgb(15, 190, 164) 0%, rgb(10, 157, 172) 75%);
+
+  &::placeholder {
+
+    color: aliceblue;
+  }
+  &:focus {
+    border: 1px solid rgb(1, 255, 196);;
+  }
 }
 
 .error {

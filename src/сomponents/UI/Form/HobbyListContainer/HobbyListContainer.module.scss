@@ -40,7 +40,8 @@
 				transition: transform 0.3s ease-in-out;
 			}
 			input[type="checkbox"]:checked + label {
-				background-color: rgb(20, 118, 210);
+				background: rgb(15, 190, 164);
+				background: linear-gradient(216deg, rgb(15, 190, 164) 0%, rgb(10, 157, 172) 75%);
 				color: #fff;
 				transition: all 0.2s;
 			}

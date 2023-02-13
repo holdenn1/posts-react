@@ -34,7 +34,8 @@
 					+ label {
 						text-transform: capitalize;
 						&:before {
-							background-color: rgb(20, 118, 210);
+							background: rgb(15, 190, 164);
+							background: linear-gradient(216deg, rgb(15, 190, 164) 0%, rgb(10, 157, 172) 75%);
 							box-shadow: inset 0 0 0 4px #f4f4f4;
 						}
 					}
@@ -43,7 +44,7 @@
 					+ label {
 						&:before {
 							outline: none;
-							border-color: rgb(20, 118, 210);
+							border-color: rgb(10, 157, 172);
 						}
 					}
 				}

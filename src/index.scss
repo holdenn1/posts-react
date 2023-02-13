@@ -117,6 +117,8 @@ html,
 body {
 	height: 100%;
 	line-height: 1;
+	background: rgb(49,181,182);
+	background: linear-gradient(270deg, rgba(49,181,182,1) 0%, rgb(0, 0, 0) 81%);
 }
 
 ol,
@@ -464,6 +466,6 @@ a {
 	font-family: "Raleway", sans-serif;
 	line-height: 120%;
 	font-weight: 400;
-	color: rgb(44, 44, 44);
 	text-decoration: none;
+	color: aliceblue;
 }

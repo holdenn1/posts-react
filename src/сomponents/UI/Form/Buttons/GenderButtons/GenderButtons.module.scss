@@ -13,7 +13,8 @@
 		text-transform: capitalize;
 	}
 	input[type="radio"]:checked + label {
-		background: rgb(20, 118, 210);
+		background: rgb(0,129,255);
+		background: linear-gradient(220deg, rgba(0,129,255,1) 0%, rgba(14,43,60,1) 77%);
 		color: aliceblue;
 		font-weight: 500;
 	}
