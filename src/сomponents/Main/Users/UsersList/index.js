@@ -1,14 +1,16 @@
 import React, {useEffect, useRef} from 'react';
-import Spinner from '../UI/Spinner/Spinner';
+import Spinner from '../../../UI/Spinner/Spinner';
 import User from './User';
 import {useDispatch, useSelector} from "react-redux";
-import {fetchUsers} from "../../store/actions/users/fetchUsers";
+import {fetchUsers} from "../../../../store/actions/users/fetchUsers";
+import styles from './UserCard.module.scss'
 
 
-function UsersList(props) {
+export default function UsersList() {
   const limit = useRef(8).current
   const dispatch = useDispatch()
   const {users, isLoading, userError} = useSelector(state => state.users)
+  const {searching} = useSelector(state => state.search)
   const observElement = useRef()
   const observer = new IntersectionObserver(loadMoreUsers);
 
@@ -30,14 +32,10 @@ function UsersList(props) {
 
   return (
     <>
-      <User loadedUsers={users} findUsers={props.findUsers} error={userError}/>
-      {isLoading && <Spinner/>}
-      <div
-        ref={observElement}
-        style={{height: '20px', width: '100%'}}
-      />
+      <User loadedUsers={users} userError={userError}/>
+      {isLoading && <Spinner />}
+      {!searching && <div ref={observElement} className={styles.observedComponent}/>}
     </>
   );
 }
 
-export default UsersList;

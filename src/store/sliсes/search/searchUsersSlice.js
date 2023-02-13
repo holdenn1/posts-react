@@ -5,17 +5,22 @@ const searchUsersSlice = createSlice({
   name: 'searchUsers',
   initialState: {
     findUsers: [],
-    searchError: ''
+    searchError: '',
+    searching: false
   },
   extraReducers:{
     [fetchSearchUsers.pending]: (state, action) => {
+      state.searching = true
       state.searchError = ''
     },
-    [fetchSearchUsers.pending]: (state, action) => {
+    [fetchSearchUsers.fulfilled]: (state, action) => {
+      state.searching = false
       state.findUsers = action.payload
     },
-    [fetchSearchUsers.pending]: (state, action) => {
+    [fetchSearchUsers.rejected]: (state, action) => {
+      state.searching = false
       state.searchError = action.payload
+
     },
   }
 })

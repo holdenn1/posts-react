@@ -5,7 +5,6 @@ import {useParams} from "react-router-dom";
 
 export default function PostsPage() {
   const {id} = useParams();
-
   return (
     <>
       <Header title="Posts"/>

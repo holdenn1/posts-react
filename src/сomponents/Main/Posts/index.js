@@ -1,4 +1,4 @@
-import React, { useEffect, useRef} from 'react';
+import React, {useEffect, useRef} from 'react';
 import styles from './styles.module.scss';
 import CurrentUser from './CurrentUser';
 import PostsList from './PostsList';
@@ -40,10 +40,7 @@ export default function Posts({userId}) {
         <PostsList posts={userPosts} error={postsError}/>
         {isLoading && <Spinner/>}
       </div>
-      <div
-        ref={observElement}
-        style={{height: '20px', width: '100%'}}
-      />
+      <div ref={observElement} className={styles.observedComponent}/>
     </>
   );
 }

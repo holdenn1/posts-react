@@ -1,0 +1,45 @@
+.container {
+  width: 220px;
+  height: 360px;
+  border: 1px solid rgb(182, 182, 182);
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 0 12px 40px;
+
+  &:hover {
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+  }
+
+  .avatar {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+  }
+
+  .info {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 140px;
+
+    .name {
+      font-weight: 700;
+      margin: 12px 0;
+    }
+
+    .age {
+      flex: 1 1 auto;
+      font-weight: 600;
+    }
+
+    .site {
+      margin: 14px 0;
+      font-size: 14px;
+    }
+  }
+}
+
+.observedComponent {
+  height: 20px;
+  width: 100%;
+}

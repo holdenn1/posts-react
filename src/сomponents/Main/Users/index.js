@@ -1,12 +1,12 @@
 import React from 'react';
-import UsersList from '../../UsersList';
 import styles from './styles.module.scss';
+import UsersList from "./UsersList";
 
-export default function Users({ findUsers }) {
+export default function Users() {
 
 	return (
 		<div className={styles.main}>
-		 <UsersList findUsers={findUsers}/>
+		<UsersList/>
 		</div>
 	);
 }

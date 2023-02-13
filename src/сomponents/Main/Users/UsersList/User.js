@@ -1,10 +1,13 @@
 import React from 'react';
 import styles from './UserCard.module.scss';
 import {Link} from 'react-router-dom';
-import PageErrorText from '../Errors/PageErrorText';
+import PageErrorText from '../../../Errors/PageErrorText';
+import {useSelector} from "react-redux";
 
-export default function User({loadedUsers, findUsers, error}) {
+export default function User({loadedUsers, userError}) {
+  const {findUsers, searchError} = useSelector(state => state.search)
   const users = findUsers.length === 0 ? loadedUsers : findUsers
+  const error = searchError.length === 0 ? userError : searchError
   return (
     <>
       {error.length > 0 ? (

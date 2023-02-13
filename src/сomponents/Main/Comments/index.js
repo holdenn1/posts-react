@@ -39,10 +39,7 @@ export default function Comments({postId}) {
         <CommentList comments={postComments} error={commentsError}/>
         {isLoading && <Spinner/>}
       </div>
-      <div
-        ref={observElement}
-        style={{height: '20px', width: '100%'}}
-      />
+      <div ref={observElement} className={styles.observedComponent}/>
     </>
   );
 }

@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&display=swap");
+
 /* http://meyerweb.com/eric/tools/css/reset/
    v2.0-modified | 20110126
    License: none (public domain)
@@ -452,6 +454,16 @@ textarea {
 	flex-direction: column;
 }
 
+h3,
+h4,
+p,
+Link,
+input,
+label,
 a {
+	font-family: "Raleway", sans-serif;
+	line-height: 120%;
+	font-weight: 400;
+	color: rgb(44, 44, 44);
 	text-decoration: none;
 }
